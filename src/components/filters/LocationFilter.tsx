@@ -1,6 +1,7 @@
 import { Flex, Select } from "@radix-ui/themes";
 import { useLocations } from "../../api/trips.api";
 import { Label } from "@radix-ui/react-label";
+import { Country } from "../../react-app-env";
 
 export default function LocationFilter({
   country,
@@ -13,7 +14,12 @@ export default function LocationFilter({
   cityId: number | null;
   setCityId: (value: number | null) => void;
 }) {
-  const { isLoading, error, data } = useLocations();
+  const {
+    isLoading,
+    error,
+    data,
+  }: { isLoading: boolean; error: Error | null; data: Country[] | undefined } =
+    useLocations();
 
   if (isLoading) return <p className="text-center p-10">Loading...</p>;
   if (error)

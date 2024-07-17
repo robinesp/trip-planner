@@ -17,10 +17,10 @@ export default function DateFilter({
   const { isLoading, error, data } = useDates();
 
   // group all dates using months for keys and store the last one of each month
-  const lastDaysOfMonth = data?.reduce((acc: any, d: Date) => {
+  const lastDaysOfMonth = data?.reduce((acc, d) => {
     acc[d.getMonth() + 1] = d;
     return acc;
-  }, {});
+  }, {} as Record<string, Date>);
 
   if (isLoading) return <p className="text-center p-10">Loading...</p>;
   if (error) console.log("An error occurred while fetching the dates ", error);
@@ -39,7 +39,7 @@ export default function DateFilter({
           // after last day of each month (except the last) show divider
           const isLastOfMonth =
             ix !== data.length - 1 &&
-            lastDaysOfMonth[d.getMonth() + 1].getTime() === d.getTime();
+            lastDaysOfMonth![d.getMonth() + 1].getTime() === d.getTime();
           const selected = d.getTime() === date?.getTime();
 
           return (
