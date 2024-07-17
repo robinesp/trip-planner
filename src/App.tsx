@@ -1,5 +1,14 @@
-import React from 'react';
+import React from "react";
+import Header from "./components/ui/Header";
+import Footer from "./components/ui/Footer";
+import TripList from "./components/trips/TripList";
 
-const App: React.FC = () => <h1>Plan your trip!</h1>;
+const App: React.FC = () => (
+  <>
+    <Header />
+    <TripList />
+    <Footer />
+  </>
+);
 
 export default App;

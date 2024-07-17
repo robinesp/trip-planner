@@ -1,11 +1,18 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+import "./index.css";
+import "@radix-ui/themes/styles.css";
+import App from "./App";
+import { Theme } from "@radix-ui/themes";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { createRoot } from "react-dom/client";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+const queryClient = new QueryClient();
+
+const container = document.getElementById("root");
+const root = createRoot(container!);
+root.render(
+  <QueryClientProvider client={queryClient}>
+    <Theme accentColor="violet">
+      <App />
+    </Theme>
+  </QueryClientProvider>
 );
